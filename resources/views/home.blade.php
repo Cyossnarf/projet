@@ -8,7 +8,7 @@
                 <div class="panel-heading">Dashboard</div>
 
                 <div class="panel-body">
-                    Bonjour {{ Auth::user()->name }}, vous êtes connecté.
+                    Bonjour {{ Auth::user()->Prénom." ".Auth::user()->Nom }}, vous êtes connecté.
                 </div>
             </div>
         </div>

@@ -5,34 +5,34 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Register</div>
+                <div class="panel-heading">S'enregistrer</div>
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
                         {{ csrf_field() }}
 
-                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <label for="name" class="col-md-4 control-label">Name</label>
+                        <div class="form-group{{ $errors->has('ID_Prac') ? ' has-error' : '' }}">
+                            <label for="ID_Prac" class="col-md-4 control-label">N° RPPS</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}">
+                                <input id="ID_Prac" type="text" class="form-control" name="ID_Prac" value="{{ old('ID_Prac') }}">
 
-                                @if ($errors->has('name'))
+                                @if ($errors->has('ID_Prac'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('name') }}</strong>
+                                        <strong>{{ $errors->first('ID_Prac') }}</strong>
                                     </span>
                                 @endif
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+                        <div class="form-group{{ $errors->has('SIH') ? ' has-error' : '' }}">
+                            <label for="SIH" class="col-md-4 control-label">SIH Hopital</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}">
+                                <input id="SIH" type="integer" class="form-control" name="SIH" value="{{ old('SIH') }}">
 
-                                @if ($errors->has('email'))
+                                @if ($errors->has('SIH'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
+                                        <strong>{{ $errors->first('SIH') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -69,7 +69,7 @@
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
-                                    <i class="fa fa-btn fa-user"></i> Register
+                                    <i class="fa fa-btn fa-user"></i> S'enregistrer
                                 </button>
                             </div>
                         </div>

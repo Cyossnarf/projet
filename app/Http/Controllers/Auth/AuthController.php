@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
+use App\Praticien;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
@@ -23,12 +23,17 @@ class AuthController extends Controller
 
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
 
+	/**
+	 * Le champ en complément du mot de passe lors de l'authentification
+	 */
+	protected $username = 'ID_Prac';
+
     /**
      * Where to redirect users after login / registration.
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    protected $redirectTo = '/home';//'/';
 
     /**
      * Create a new authentication controller instance.
@@ -49,8 +54,8 @@ class AuthController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
+            'ID_Prac' => 'required|unique:Praticien',
+			'SIH' => 'required',
             'password' => 'required|min:6|confirmed',
         ]);
     }
@@ -63,10 +68,13 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => $data['password'],//bcrypt($data['password']),//Attention, faut pass crypter 2 fois
+        return Praticien::create([
+            'ID_Prac' => $data['ID_Prac'],
+			'SIH' => $data['SIH'],
+			'Prénom' => 'A renseigner',
+			'Nom' => 'A renseigner',
+			'DateNaissance' => 'A renseigner',
+            'password' => $data['password'],//bcrypt($data['password']),//Attention, faut pas crypter 2 fois
 			'admin' => isset($data['admin'])
         ]);
     }
