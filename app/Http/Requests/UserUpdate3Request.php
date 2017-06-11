@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
-class ContactRequest extends Request
+class UserUpdate3Request extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,10 +23,10 @@ class ContactRequest extends Request
      */
     public function rules()
     {
+		$id = $this->user;
         return [
-            'nom' => 'required|min:5|max:20|alpha',
-            'email' => 'required|email',
-			'texte' => 'required|max:250'
+			'password_old' => 'required',
+			'password' => 'required|min:6|confirmed'
         ];
     }
 }

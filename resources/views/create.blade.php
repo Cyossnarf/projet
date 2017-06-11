@@ -1,20 +1,32 @@
-@extends('template_contact')
+@extends('layouts.backend')
 
-@section('contenu')
+@section('content')
 	<div class="col-sm-offset-4 col-sm-4">
 		<br>
 		<div class="panel panel-primary">	
 			<div class="panel-heading">Création d'un utilisateur</div>
 			<div class="panel-body"> 
 				<div class="col-sm-12">
-					{!! Form::open(['route' => 'user.store', 'class' => 'form-horizontal panel']) !!}	
-					<div class="form-group {!! $errors->has('name') ? 'has-error' : '' !!}">
-						{!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Nom']) !!}
-						{!! $errors->first('name', '<small class="help-block">:message</small>') !!}
+					{!! Form::open(['route' => 'admin.user.store', 'class' => 'form-horizontal panel']) !!}	
+					<div class="form-group {!! $errors->has('ID_Prac') ? 'has-error' : '' !!}">
+						{!! Form::text('ID_Prac', null, ['class' => 'form-control', 'placeholder' => 'N°RPPS']) !!}
+						{!! $errors->first('ID_Prac', '<small class="help-block">:message</small>') !!}
 					</div>
-					<div class="form-group {!! $errors->has('email') ? 'has-error' : '' !!}">
-						{!! Form::email('email', null, ['class' => 'form-control', 'placeholder' => 'Email']) !!}
-						{!! $errors->first('name', '<small class="help-block">:message</small>') !!}
+					<div class="form-group {!! $errors->has('Prénom') ? 'has-error' : '' !!}">
+						{!! Form::text('Prénom', null, ['class' => 'form-control', 'placeholder' => 'Prénom']) !!}
+						{!! $errors->first('Prénom', '<small class="help-block">:message</small>') !!}
+					</div>
+					<div class="form-group {!! $errors->has('Nom') ? 'has-error' : '' !!}">
+						{!! Form::text('Nom', null, ['class' => 'form-control', 'placeholder' => 'Nom']) !!}
+						{!! $errors->first('Nom', '<small class="help-block">:message</small>') !!}
+					</div>
+					<div class="form-group {!! $errors->has('DateNaissance') ? 'has-error' : '' !!}">
+						{!! Form::text('DateNaissance', null, ['class' => 'form-control', 'placeholder' => 'Date de naissance']) !!}
+						{!! $errors->first('DateNaissance', '<small class="help-block">:message</small>') !!}
+					</div>
+					<div class="form-group {!! $errors->has('SIH') ? 'has-error' : '' !!}">
+						{!! Form::text('SIH', null, ['class' => 'form-control', 'placeholder' => 'N°SIH']) !!}
+						{!! $errors->first('SIH', '<small class="help-block">:message</small>') !!}
 					</div>
 					<div class="form-group {!! $errors->has('password') ? 'has-error' : '' !!}">
 						{!! Form::password('password', ['class' => 'form-control', 'placeholder' => 'Mot de passe']) !!}

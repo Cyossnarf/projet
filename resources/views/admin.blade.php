@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.backend')
 
 @section('content')
 <div class="container">
@@ -8,7 +8,7 @@
                 <div class="panel-heading">Dashboard</div>
 
                 <div class="panel-body">
-                    Bonjour {{ Auth::user()->Prénom." ".Auth::user()->Nom }}, vous êtes connecté.
+                    Bonjour {{ Auth::user()->Prénom." ".Auth::user()->Nom }}, vous êtes dans la zone administrateur.
                 </div>
             </div>
         </div>

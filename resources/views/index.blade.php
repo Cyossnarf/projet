@@ -1,8 +1,8 @@
-@extends('template_contact')
+@extends('layouts.backend')
 
-@section('contenu')
+@section('content')
     <br>
-    <div class="col-sm-offset-4 col-sm-4">
+    <div class="col-sm-offset-2 col-sm-8">
     	@if(session()->has('ok'))
 			<div class="alert alert-success alert-dismissible">{!! session('ok') !!}</div>
 		@endif
@@ -13,8 +13,11 @@
 			<table class="table">
 				<thead>
 					<tr>
-						<th>#</th>
+						<th>N°RPPS</th>
+						<th>Prénom</th>
 						<th>Nom</th>
+						<th>N°SIH</th>
+						<th>Admin</th>
 						<th></th>
 						<th></th>
 						<th></th>
@@ -23,12 +26,15 @@
 				<tbody>
 					@foreach ($users as $user)
 						<tr>
-							<td>{!! $user->id !!}</td>
-							<td class="text-primary"><strong>{!! $user->name !!}</strong></td>
-							<td>{!! link_to_route('user.show', 'Voir', [$user->id], ['class' => 'btn btn-success btn-block']) !!}</td>
-							<td>{!! link_to_route('user.edit', 'Modifier', [$user->id], ['class' => 'btn btn-warning btn-block']) !!}</td>
+							<td>{!! $user->ID_Prac !!}</td>
+							<td class="text-primary"><strong>{!! $user->Prénom !!}</strong></td>
+							<td class="text-primary"><strong>{!! $user->Nom !!}</strong></td>
+							<td>{!! $user->SIH !!}</td>
+							<td>{!! $user->admin !!}</td>
+							<td>{!! link_to_route('admin.user.show', 'Voir', [$user->ID_Prac], ['class' => 'btn btn-success btn-block']) !!}</td>
+							<td>{!! link_to_route('admin.user.edit', 'Modifier', [$user->ID_Prac], ['class' => 'btn btn-warning btn-block']) !!}</td>
 							<td>
-								{!! Form::open(['method' => 'DELETE', 'route' => ['user.destroy', $user->id]]) !!}
+								{!! Form::open(['method' => 'DELETE', 'route' => ['admin.user.destroy', $user->ID_Prac]]) !!}
 									{!! Form::submit('Supprimer', ['class' => 'btn btn-danger btn-block', 'onclick' => 'return confirm(\'Vraiment supprimer cet utilisateur ?\')']) !!}
 								{!! Form::close() !!}
 							</td>
@@ -37,7 +43,7 @@
 	  			</tbody>
 			</table>
 		</div>
-		{!! link_to_route('user.create', 'Ajouter un utilisateur', [], ['class' => 'btn btn-info pull-right']) !!}
+		{!! link_to_route('admin.user.create', 'Ajouter un utilisateur', [], ['class' => 'btn btn-info pull-right']) !!}
 		{!! $links !!}
 	</div>
 @endsection

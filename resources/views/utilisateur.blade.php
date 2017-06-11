@@ -5,10 +5,10 @@
     <div class="row">
         <div class="col-md-10">
             <div class="panel panel-default">
-                <div class="panel-heading">Bienvenue</div>
+                <div class="panel-heading">Bienvenue!</div>
 
                 <div class="panel-body">
-                    Vous êtes sur la page d'accueil du site de la NENO Base.
+                    Bonjour {{ Auth::user()->Prénom." ".Auth::user()->Nom }}, vous êtes connecté.
                 </div>
             </div>
         </div>

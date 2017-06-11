@@ -2,12 +2,12 @@
 
 namespace App\Gestion;
 
-use App\User;
+use App\Praticien;
 
 class UserRepository extends ResourceRepository
 {
 	
-    public function __construct(User $user)
+    public function __construct(Praticien $user)
 	{
 		$this->model = $user;
 	}

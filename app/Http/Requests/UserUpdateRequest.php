@@ -25,8 +25,11 @@ class UserUpdateRequest extends Request
     {
 		$id = $this->user;
         return [
-            'name' => 'required|max:255|unique:users,name,' . $id,
-			'email' => 'required|email|max:255|unique:users,email,' . $id
+			'Prénom' => 'max:255',
+			'Nom' => 'max:255',
+			'DateNaissance' => 'max:255',
+			'SIH' => 'required|max:255',
+            'password' => 'min:6|confirmed'// Soit le mdp est vide, soit il fait plus de 6 caractères
         ];
     }
 }

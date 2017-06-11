@@ -33,7 +33,7 @@ class AuthController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';//'/';
+    protected $redirectTo = '/utilisateur';
 
     /**
      * Create a new authentication controller instance.
@@ -50,7 +50,7 @@ class AuthController extends Controller
      *
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
-     */
+     *//*
     protected function validator(array $data)
     {
         return Validator::make($data, [
@@ -58,14 +58,14 @@ class AuthController extends Controller
 			'SIH' => 'required',
             'password' => 'required|min:6|confirmed',
         ]);
-    }
+    }*/
 
     /**
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
      * @return User
-     */
+     *//*
     protected function create(array $data)
     {
         return Praticien::create([
@@ -74,8 +74,8 @@ class AuthController extends Controller
 			'Prénom' => 'A renseigner',
 			'Nom' => 'A renseigner',
 			'DateNaissance' => 'A renseigner',
-            'password' => $data['password'],//bcrypt($data['password']),//Attention, faut pas crypter 2 fois
+            'password' => $data['password'],//bcrypt($data['password']),//Attention, il ne faut pas crypter 2 fois
 			'admin' => isset($data['admin'])
         ]);
-    }
+    }*/
 }

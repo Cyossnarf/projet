@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
-class ImagesRequest extends Request
+class UserUpdate2Request extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,6 +23,11 @@ class ImagesRequest extends Request
      */
     public function rules()
     {
-        return ['image' => 'required|image'];
+		$id = $this->user;
+        return [
+			'Prénom' => 'max:255',
+			'Nom' => 'max:255',
+			'DateNaissance' => 'max:255'
+        ];
     }
 }

@@ -44,4 +44,9 @@ class Praticien extends Authenticatable
 	{
 		$this->attributes['password'] = bcrypt($password);
 	}
+	
+	public function isAdmin()
+	{
+    	return $this->admin; // this looks for an admin column in your users table
+	}
 }

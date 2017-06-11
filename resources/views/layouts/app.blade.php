@@ -13,7 +13,7 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-    {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
+    {{--<link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
 
     <style>
         body {
@@ -31,7 +31,7 @@
             <div class="navbar-header">
 
                 <!-- Collapsed Hamburger -->
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse1">
                     <span class="sr-only">Toggle Navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -43,19 +43,13 @@
                     NENO Base
                 </a>
             </div>
-
-            <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                <!-- Left Side Of Navbar -->
-                <ul class="nav navbar-nav">
-                    <li><a href="{{ url('/home') }}">Home</a></li>
-                </ul>
-
+			<!-- Collect the nav content for toggling -->
+            <div class="collapse navbar-collapse" id="app-navbar-collapse1">
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Authentication Links -->
                     @if (Auth::guest())
-                        <li><a href="{{ url('/login') }}">Login</a></li>
-                        <li><a href="{{ url('/register') }}">Register</a></li>
+                        <li><a href="{{ url('/login') }}">Connexion</a></li>
                     @else
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -63,7 +57,7 @@
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
+                                <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Déconnexion</a></li>
                             </ul>
                         </li>
                     @endif
@@ -71,8 +65,46 @@
             </div>
         </div>
     </nav>
+	
+	@if (Auth::guest())
+		@yield('content')
+	@else
+	<div class="container-fluid">
+	<div class="row">
+		<div class="col-sm-3 col-lg-2">
+		<nav class="navbar navbar-default navbar-static-side">
+			<div class="navbar-header">
+            	<!-- Collapsed Hamburger -->
+            	<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse2">
+                	<span class="sr-only">Toggle Navigation</span>
+                	<span class="icon-bar"></span>
+                	<span class="icon-bar"></span>
+                	<span class="icon-bar"></span>
+            	</button>
+				<a class="navbar-brand" href="{{ url('/utilisateur') }}">Mon compte</a>
+        	</div>
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse" id="app-navbar-collapse2">
+				<ul class="nav navbar-nav">
+					@if (Auth::user()->isAdmin())
+						<li><a href="{{ url('/admin') }}">Zone administrateur</a></li>
+					@else
+						<li><a href="{{ url('/donnees') }}">Consulter des données</a></li>
+					@endif
+					<li><a href="{{ url('/informations') }}">Mes informations</a></li>
+				</ul>
+			</div>
+		</nav>
+		</div>
 
-    @yield('content')
+		<div class="col-sm-9 col-lg-10">
+		<div class="well">
+			@yield('content')
+		</div>
+		</div>
+	</div>
+	</div>
+	@endif
 
     <!-- JavaScripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script>
