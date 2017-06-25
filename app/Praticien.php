@@ -37,14 +37,19 @@ class Praticien extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
 	/**
-	 * Attention, ne pas crypter deux fois
+	 * Méthode appelée après chaque modification du mot de passe
+	 * Attention à ne pas crypter deux fois!
 	 */
 	public function setPasswordAttribute($password)
 	{
 		$this->attributes['password'] = bcrypt($password);
 	}
 	
+	/**
+	 * Méthode qui vérifie si l'utilisateur est un administrateur
+	 */
 	public function isAdmin()
 	{
     	return $this->admin; // this looks for an admin column in your users table

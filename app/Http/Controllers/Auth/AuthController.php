@@ -19,6 +19,8 @@ class AuthController extends Controller
     | authentication of existing users. By default, this controller uses
     | a simple trait to add these behaviors. Why don't you explore it?
     |
+	| En fait l'enregistrement n'est pas permis sur le site, les méthodes
+	| correspondantes sont commentées
     */
 
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;

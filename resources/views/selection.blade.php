@@ -49,9 +49,12 @@ if ($admin) {
 						if ($liste) {
 							$reponse = $bdd->query('SELECT * FROM '.$donnees[2] );
 							$choix = array();
+							$clefs = array();
 							while ($donnees = $reponse->fetch()) {
 								array_push($choix, $donnees[1]);
+								array_push($clefs, $donnees[0]);
 							}
+							$choix = array_combine($clefs, $choix);
 						}
 						elseif ($booleen) {
 							$choix = array('OUI' => 'OUI', 'NON' => 'NON');

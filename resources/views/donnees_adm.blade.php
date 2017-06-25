@@ -22,8 +22,8 @@
 				<div class="col-sm-4">
 					{!! Form::open(['route' => 'admin.donnees.fiches', 'class' => 'form-horizontal panel']) !!}
 					<div class="form-group">
-						{!! Form::select('fiche', array('anatomopatho' => 'Anatomopathologie',
-							'cardiologie' => 'Cardiologie',
+						{!! Form::select('fiche', array('cardiologie' => 'Cardiologie',
+							'anatomopatho' => 'Anatomopathologie',
 							'radiologie' => 'Radiologie')) !!}
 					</div>
 					{!! Form::submit('Suivant', ['class' => 'btn btn-primary  pull-right']) !!}

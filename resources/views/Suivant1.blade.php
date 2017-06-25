@@ -10,6 +10,10 @@ catch (Exception $e)
 {
 	die('Erreur : '.$e->getMessage());
 }
+
+$reponse = $bdd->query('SELECT COUNT(P_ID_NUM_EXAM) as NB FROM anatomopatho');
+$total = $reponse->fetch();
+
 $reponse = $bdd->query('SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME= \'anatomopatho\'');
 $champs=array();
 
@@ -46,18 +50,23 @@ if (!$admin) {
 }
 
 $resultat = $bdd->query('SELECT * FROM anatomopatho WHERE '.$rep );
-$nb=1;
+$nb = 0;
+$chaine = '';
 while ($don = $resultat->fetch()) {
-	$etab=$bdd->query('SELECT NomÉtablissement FROM etablissement WHERE nFINESS = '.$don[0]);
+	$nb = $nb+1;
+	
+	$etab = $bdd->query('SELECT NomÉtablissement FROM etablissement WHERE nFINESS = '.$don[0]);
     $centre=$etab->fetch ();
     $med=$bdd->query('SELECT Nom,Prénom FROM praticien WHERE ID_Prac = '.$don[1]);
     $medecin=$med->fetch ();
     $mal=$bdd->query('SELECT DatedeNaissance,Sexe FROM patient WHERE ID_Pat = \''.$don[4].'\'');
     $malade=$mal->fetch ();
-        
-    echo('La fiche num&eacute;ro '.$nb.' : </br></br>'.'Centre d\'examen : '.$centre[0].'</br>'.'M&eacute;decin responsable : '.$medecin[1].'  '.$medecin[0].'</br>'.' Num&eacute;ro de l\'examen : '.$don[2].'</br>'.' Date de l\'examen : '.$don[3].'</br>'.'Identifiant malade : '.$don[4].'</br>'.'Date de naissance malade : '.$malade[0].'</br>'.'Sexe du malade : '.$malade[1].'</br>'.'</br> </br>');
-$nb = $nb+1;
+    
+    $chaine = $chaine.'La fiche num&eacute;ro '.$nb.' : </br></br>'.'Centre d\'examen : '.$centre[0].'</br>'.'M&eacute;decin responsable : '.$medecin[1].'  '.$medecin[0].'</br>'.' Num&eacute;ro de l\'examen : '.$don[2].'</br>'.' Date de l\'examen : '.$don[3].'</br>'.'Identifiant malade : '.$don[4].'</br>'.'Date de naissance malade : '.$malade[0].'</br>'.'Sexe du malade : '.$malade[1].'</br> </br> </br>';
  }
+
+$pourcentage = number_format($nb*100/$total['NB'], 2, ',', ' ');
+echo('Votre recherche correspond à '.$nb.' fiches ('.$pourcentage.'%): </br> </br> </br>'.$chaine);
 
 //echo('SELECT * FROM anatomopatho WHERE '.$rep);//debug
 
